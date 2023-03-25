@@ -42,10 +42,10 @@ for x = xlo : xhi       % Don't consider boundary pixels that can't
        %compare pairs (X,Y) and (6-X,6-Y)
        %(X,Y)from (1,1) to (1,4),from (2,1) to (2,3),
        % (3,1), (3,2), (4,4)
+       %set a count called hh to compare the paired pixels(not include the pixels on diagonal)
        hh=4;
         for X=1:4
             for Y=1:hh
-                
                
              if abs(q(3,3)-q(X,Y))>=abs(q(3,3)-q(6-X,6-Y))
                 q(X,Y)=0;
@@ -59,7 +59,7 @@ for x = xlo : xhi       % Don't consider boundary pixels that can't
            end
         end
         
-        % Then compare the pairs of pixels on the diagonal
+        % Then compare the numbers on the diagonal
         if abs(q(3,3)-q(5,1))>=abs(q(3,3)-q(1,5))
            q(5,1)=0; 
         elseif abs(q(3,3)-q(5,1))<abs(q(3,3)-q(1,5))
@@ -73,7 +73,7 @@ for x = xlo : xhi       % Don't consider boundary pixels that can't
         end
         
     %Compute the final mean with the middle pixel value.     
-    symmetric_5(x,y) = (sum(q,"all")+w) / 13; 
+    symmetric_5(x,y) = sum(q,"all") / 13; 
     end
 end
 % Convert back to an 8-bit image
