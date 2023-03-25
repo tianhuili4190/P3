@@ -18,7 +18,7 @@ function [mean_5] = mean5x5(f,fzero,M,N)
         end
     end
 % Convert f to a 16-bit number, so we can do sums > 255 correctly
-g = uint8(f);
+g = doubel(uint8(f));
 
 % Define the coordinate limits for output pixels that can be properly
 % computed by the 5X5 filter
